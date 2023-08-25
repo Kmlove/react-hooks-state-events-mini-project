@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+function Task({category, text, tasks, onTaskDelete}) {
 
-function Task({category, text}) {
-  
-  const [deleteMe, setDeleteMe] = useState(false)
- 
-  const display = deleteMe ? {display: "none"} : {dispaly: "normal"}
+  function handleDelete(){
+    const filteredArray = tasks.filter((task) => task.text !== text)
+    onTaskDelete(filteredArray)
+  }
 
   return (
-    <div className="task" style={display}>
+    <div className="task" >
       <div className="label">{category}</div>
       <div className="text">{text}</div>
-      <button className="delete" onClick={e => setDeleteMe(true)}>X</button>
+      <button className="delete" onClick={handleDelete}>X</button>
     </div>
   );
 }

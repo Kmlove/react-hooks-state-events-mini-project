@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 function CategoryFilter({categories, selectedClass, changeClass}) {
 
   const buttonArray = categories.map(category => {

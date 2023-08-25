@@ -9,9 +9,18 @@ console.log({ CATEGORIES, TASKS });
 
 function App() {
   const [selectedClass, setSelectedClass] = useState("All");
-
+  const [tasks, setTasks] = useState(TASKS)
+ 
   function changeClass(e) {
     setSelectedClass(e.target.textContent);
+  }
+
+  function onTaskDelete(value){
+    setTasks(value)
+  }
+
+  function onTaskFormSubmit(newTask){
+    setTasks([...tasks, newTask])
   }
 
   return (
@@ -22,8 +31,12 @@ function App() {
         selectedClass={selectedClass}
         changeClass={changeClass}
       />
-      <NewTaskForm />
-      <TaskList tasks={TASKS} selectedClass={selectedClass}/>
+      <NewTaskForm onTaskFormSubmit={onTaskFormSubmit} categories={CATEGORIES}/>
+      <TaskList 
+        tasks={tasks} 
+        onTaskDelete={onTaskDelete}
+        selectedClass={selectedClass}
+      />
     </div>
   );
 }

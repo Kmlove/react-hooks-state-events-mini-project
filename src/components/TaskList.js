@@ -1,7 +1,7 @@
 import React from "react";
 import Task from "./Task"
 
-function TaskList({ tasks, selectedClass }) {
+function TaskList({ tasks, selectedClass, onTaskDelete}) {
 
   const filterArray = tasks.filter((task) => {
     if(selectedClass === "All"){
@@ -12,7 +12,15 @@ function TaskList({ tasks, selectedClass }) {
   })
 
   const taskListArray = filterArray.map(task => {
-    return <Task key={task.text} category={task.category} text={task.text}/>
+    return (
+      <Task 
+        key={task.text} 
+        category={task.category} 
+        text={task.text}
+        tasks={tasks}
+        onTaskDelete={onTaskDelete}
+      />
+    )
   })
 
   return (
