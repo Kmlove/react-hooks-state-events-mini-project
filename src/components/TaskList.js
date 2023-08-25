@@ -1,9 +1,17 @@
 import React from "react";
 import Task from "./Task"
 
-function TaskList({ tasks }) {
+function TaskList({ tasks, selectedClass }) {
 
-  const taskListArray = tasks.map(task => {
+  const filterArray = tasks.filter((task) => {
+    if(selectedClass === "All"){
+      return true
+    }
+
+    return selectedClass === task.category
+  })
+
+  const taskListArray = filterArray.map(task => {
     return <Task key={task.text} category={task.category} text={task.text}/>
   })
 
